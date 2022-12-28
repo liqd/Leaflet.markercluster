@@ -1,5 +1,5 @@
 /*
- * Leaflet.markercluster 1.5.4+main.50072a6,
+ * Leaflet.markercluster 1.5.4+main.159090a,
  * Provides Beautiful Animated Marker Clustering functionality for Leaflet, a JS library for interactive maps.
  * https://github.com/Leaflet/Leaflet.markercluster
  * (c) 2012-2017, Dave Leaver, smartrak
@@ -8,7 +8,7 @@
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
 	typeof define === 'function' && define.amd ? define(['exports'], factory) :
 	(global = global || self, factory((global.Leaflet = global.Leaflet || {}, global.Leaflet.markercluster = {})));
-}(this, function (exports) { 'use strict';
+}(this, (function (exports) { 'use strict';
 
 	/*
 	 * L.MarkerClusterGroup extends L.FeatureGroup by clustering the markers contained within
@@ -137,6 +137,10 @@
 			    currentZoom = this._zoom;
 			if (layer.__parent) {
 				while (visibleLayer.__parent._zoom >= currentZoom) {
+					// Check if visibleLayer.__parent is undefined to avoid crashing in the next loop.
+					if (visibleLayer.__parent === undefined) {
+						break;
+					}
 					visibleLayer = visibleLayer.__parent;
 				}
 			}
@@ -335,7 +339,7 @@
 				}
 
 				needsClustering = needsClustering.slice(0, tail);	// truncate empty elements
-				this._needsClustering.push.apply(this._needsClustering, needsClustering);
+				this._needsClustering = this._needsClustering.concat(needsClustering);
 			}
 			return this;
 		},
@@ -742,7 +746,7 @@
 			delete e.target.__dragStart;
 			if (dragStart) {
 				this._moveChild(e.target, dragStart, e.target._latlng);
-			}		
+			}
 		},
 
 
@@ -846,7 +850,7 @@
 				c += 'large';
 			}
 
-			return new L.DivIcon({ html: '<div><span>' + childCount + '</span></div>', className: 'marker-cluster' + c, iconSize: new L.Point(40, 40) });
+			return new L.DivIcon({ html: '<div><span>' + childCount + ' <span aria-label="markers"></span>' + '</span></div>', className: 'marker-cluster' + c, iconSize: new L.Point(40, 40) });
 		},
 
 		_bindEvents: function () {
@@ -2713,10 +2717,10 @@
 		}
 	});
 
-	exports.MarkerClusterGroup = MarkerClusterGroup;
 	exports.MarkerCluster = MarkerCluster;
+	exports.MarkerClusterGroup = MarkerClusterGroup;
 
 	Object.defineProperty(exports, '__esModule', { value: true });
 
-}));
+})));
 //# sourceMappingURL=leaflet.markercluster-src.js.map
