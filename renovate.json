@@ -28,6 +28,11 @@
       {
         "matchPackageNames": ["mocha"],
         "allowedVersions": "<6.2.3"
+      },
+      {
+        "matchPackageNames": ["rollup"],
+        "allowedVersions": "<3.0.0"
       }
+
     ]
 }
