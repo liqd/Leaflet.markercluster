@@ -24,6 +24,6 @@
       {
         "packagePatterns": ["^eslint"],
         "groupName": "eslint packages"
-      },
-    ],
+      }
+    ]
 }
