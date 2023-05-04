@@ -24,6 +24,10 @@
       {
         "packagePatterns": ["^eslint"],
         "groupName": "eslint packages"
+      },
+      {
+        "matchPackageNames": ["mocha"],
+        "allowedVersions": "<6.2.3"
       }
     ]
 }
