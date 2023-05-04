@@ -11,7 +11,7 @@
 		"karma": "6.4.2",
 		"karma-chrome-launcher": "^2.0.0",
 		"karma-coverage": "^1.1.1",
-		"karma-firefox-launcher": "^1.0.1",
+		"karma-firefox-launcher": "^2.0.0",
 		"karma-mocha": "^2.0.0",
 		"karma-phantomjs-launcher": "^1.0.4",
 		"karma-rollup-preprocessor": "^7.0.5",
